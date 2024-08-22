@@ -7,7 +7,8 @@ const UserSchema = new Schema({
         type : String,
         unique : true,
         trim : true,
-        required : ture
+        set: (value) => value.toLowerCase(),
+        required : true
     },
     password : {
         type : String,
@@ -19,7 +20,12 @@ const UserSchema = new Schema({
         type: Schema.Types.Mixed,
         default: {}
     }
+},
+{
+    timestamps: true
 })
+
+UserSchema.index({ username: 1 });
 
 const User = model("User", UserSchema);
 

@@ -6,9 +6,39 @@ const getRead = (req, res) => {
     .json(new response ("GET Request accept from Read", "A HTML Page will be render here"))
 };
 
+
+import { readUser } from "../db/read.db.js"; 
 const postRead = (req, res) => {
-    return res.status(200)
-    .json(new response ("POST Method is not Allowed", null));
+
+
+    const { username } = req.body;
+    /// validate the data before inserting it
+    console.log("Log from postCreate route : ", username);
+    
+
+    readUser(username)
+    .then( (result) => {
+        
+        let userFound = "User Found";
+        if(!result)
+        {
+            userFound = "not Found";
+        }
+
+        console.log("-----> " + userFound);
+        
+        return res.status(200)
+        .json(new response (userFound, result));
+
+    })
+    .catch((error) => {
+        console.log("----> not Found");
+
+        return res.status(404)
+        .json(new response ("not Found :", error));
+
+    })
+
 };
 
 const putRead = (req, res) => {

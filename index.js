@@ -6,6 +6,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
+// DATABASE Connection 
+import { onConnection } from "./db/on.Connection.db.js"
+onConnection();
+
+
+
 // home routes 
 import Home from "./routes/home.route.js"
 app.use('/', Home);

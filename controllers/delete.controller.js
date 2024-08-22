@@ -6,9 +6,37 @@ const getDelete = (req, res) => {
     .json(new response ("GET Request accept from Delete", "A HTML Page will be render here"))
 };
 
+
+import { deleteUser } from "../db/delete.db.js";
 const postDelete = (req, res) => {
-    return res.status(200)
-    .json(new response ("POST Method is not Allowed", null));
+    
+    
+    const { username, password } = req.body;
+    /// validate the data before inserting it
+    console.log("Log from postCreate route : ", username);
+    
+
+    deleteUser(username)
+    .then( (result) => {
+        
+        let userFound = "User Found & Data Daleted";
+        if(!result)
+        {
+            userFound = "User not Found: Faild to update the Data.";
+        }
+
+        console.log("-----> " + userFound);
+        
+        return res.status(200)
+        .json(new response (userFound, result));
+
+    })
+    .catch((error) => {
+        console.log("----> not Found");
+
+        return res.status(404)
+        .json(new response ("not Found :", error));
+    })
 };
 
 const putDelete = (req, res) => {
