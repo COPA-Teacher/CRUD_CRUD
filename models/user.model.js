@@ -1,6 +1,4 @@
 import { Schema, model } from "mongoose";
-import { DEFAULT_PASSWORD } from "../constants.js"
-
 
 const UserSchema = new Schema({
     username : {
@@ -14,7 +12,7 @@ const UserSchema = new Schema({
         type : String,
         trim : true,
         required : true,
-        default : DEFAULT_PASSWORD
+        default : process.env.DEFAULT_PASSWORD
     },
     data: {
         type: Schema.Types.Mixed,

@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import { DB_URI, DB } from "../constants.js"
+
 
 export const onConnection = async () => {
-    const DB_URL = DB_URI+DB;
+    
     try {
         
-        await mongoose.connect(DB_URL, {});
+        await mongoose.connect(process.env.DB_URI, {});
 
         mongoose.connection.on('connected', () => {
             console.log('Mongoose connection open');

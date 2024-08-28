@@ -10,6 +10,10 @@ app.use(express.urlencoded({extended: true}));
 import { onConnection } from "./db/on.Connection.db.js"
 onConnection();
 
+console.log(process.env.DB_URI);
+console.log(process.env.DEFAULT_PASSWORD);
+
+
 
 
 // home routes 
