@@ -1,11 +1,12 @@
 import { Router } from "express";
 import {getRead, postRead, putRead, deleteRead, patchRead, headRead, optionsRead} from "../controllers/read.controller.js"
+import isAuthenticated from "../middleware/isAuthenticated.middleware.js";
 
 const Read = Router();
 
 Read.route('/')
 .get(getRead)
-.post(postRead)
+.post(isAuthenticated, postRead)
 .put(putRead)
 .delete(deleteRead)
 .patch(patchRead)
