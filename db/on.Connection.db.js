@@ -5,7 +5,7 @@ export const onConnection = async () => {
     
     try {
         
-        await mongoose.connect(process.env.DB_URI, {});
+        await mongoose.connect(process.env.DB_URI + "crud_crud", {});
 
         mongoose.connection.on('connected', () => {
             console.log('Mongoose connection open');
@@ -18,9 +18,11 @@ export const onConnection = async () => {
         mongoose.connection.on('disconnected', () => {
             console.log('Mongoose connection disconnected');
         });
+        return true;
 
     } catch (error) {
         console.log("On.Connection Error : \n", error);
+        return false;
         process.exit("ON_CONNECTION_ERR");
     }
 

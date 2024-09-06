@@ -8,10 +8,8 @@ app.use(express.urlencoded({extended: true}));
 
 // DATABASE Connection 
 import { onConnection } from "./db/on.Connection.db.js"
-onConnection();
+console.log(onConnection() ? "--->  DB is Connected.\n" : "--->  DB is NOT Connected.\n");
 
-console.log(process.env.DB_URI);
-console.log(process.env.DEFAULT_PASSWORD);
 
 
 
