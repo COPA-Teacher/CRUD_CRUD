@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {getDelete, postDelete, putDelete, deleteDelete, patchDelete, headDelete, optionsDelete} from "../controllers/delete.controller.js"
+import isAuthenticated from "../middleware/isAuthenticated.middleware.js";
 
 const Delete = Router();
 
