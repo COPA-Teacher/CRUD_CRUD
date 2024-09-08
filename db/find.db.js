@@ -1,10 +1,11 @@
+import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 
 const find = async (_username, _password) => {
 
     try {
         /// must check for data validation .
-        console.log("From UpdateDB : ", _username, _password);
+        console.log("From find: ", _username, _password);
         
 
         const user = await User.findOne({username: _username});
@@ -14,7 +15,12 @@ const find = async (_username, _password) => {
             throw new Error('User not found.');
         }
 
-        return (_password === user.password) ? true : false;   
+
+        const isMatched = await bcrypt.compare(_password, user.password);
+
+
+
+        return isMatched ? true : false;   
         
     } catch (error) {
         console.error('Error updating user.', error);
