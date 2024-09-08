@@ -7,6 +7,7 @@ const getCreate = (req, res) => {
 };
 
 
+import jwt from "jsonwebtoken";
 import { createUser } from "../db/create.db.js"
 const postCreate = (req, res) => {
     const { username, password, data } = req.body;
@@ -18,8 +19,22 @@ const postCreate = (req, res) => {
     .then( (result) => {
         // console.log("Successfully added :", result);
 
+        const token = jwt.sign(
+            {
+                username: result.username,
+                id: result._id
+            },
+            process.env.JWT_SECRET_KEY,
+            {expiresIn: "15m"}
+        )
+
         return res.status(200)
-        .json(new response ("Successfully added :", result));
+        .json(
+        {
+            massage: "Successfully added :", 
+            result, 
+            token
+        });
 
     })
     .catch((error) => {

@@ -13,7 +13,7 @@ const isAuthenticated = async (req, res, next) => {
         res.status(401)
         .json(
             new response(
-                "This response code means that authentication is required and has either not been provided or is invalid. The server expects the client to provide proper authentication credentials.",
+                "Username or Password is not correct OR User might not exist.",
                 null
             )
         )

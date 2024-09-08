@@ -13,7 +13,7 @@ const postUpdate = (req, res) => {
 
     const { username, data } = req.body;
     /// validate the data before inserting it
-    console.log("Log from postCreate route : ", username);
+    console.log("Log from postUpdate route : ", username);
     
 
     updateUser(username, data)

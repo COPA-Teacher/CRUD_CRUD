@@ -26,7 +26,7 @@ export const updateUser = async (_username, _data) => {
             {username: _username},
             {$set: {data: updatedData}},
             {new: true, }
-        )
+        ).select("-password -__v -_id -updatedAt")
 
         console.log("\nresult:UpdateDB: ", result);
         
